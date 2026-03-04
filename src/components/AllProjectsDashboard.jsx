@@ -63,7 +63,6 @@ const AllProjectsDashboard = ({ onProjectSelect }) => {
                 </button>
             </div>
 
-            {/* --- Sidebar (Analytics removed, simplified for single-purpose) --- */}
             <aside className="hidden md:flex w-64 bg-[#0f172a] text-slate-200 flex-col justify-between p-5 shrink-0 border-r border-slate-800 z-20">
                 <div>
                     {/* Logo Area */}

@@ -61,10 +61,6 @@ const ProjectDetails = ({ project, onBack, onCreateReport }) => {
                             <Folder className="h-5 w-5 text-blue-400" />
                             All Projects
                         </a>
-                        <a href="#" className="flex items-center gap-3 text-slate-400 hover:text-white hover:bg-white/5 px-3 py-2.5 rounded-lg font-medium text-sm transition-colors">
-                            <BarChart2 className="h-5 w-5" />
-                            Analytics
-                        </a>
                     </nav>
                 </div>
 
