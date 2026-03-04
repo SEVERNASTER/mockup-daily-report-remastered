@@ -80,16 +80,28 @@ const WorkContent = () => {
                 </div>
 
                 {/* SCROLLABLE CONTAINER FOR WORK ENTRIES */}
-                <div className="space-y-4 max-h-[450px] overflow-y-auto pr-2 pb-2 custom-scrollbar">
+                <div className="space-y-4 max-h-[450px] overflow-y-auto pr-2 pb-2 custom-scrollbar mt-6">
                     {workEntries.map((entry, index) => (
-                        <div key={entry.id} className={`group relative grid grid-cols-1 gap-4 rounded-2xl bg-slate-50 border p-5 md:grid-cols-12 transition-all duration-300 hover:shadow-md hover:bg-white hover:border-blue-200 ${entry.isInvalid ? 'border-rose-300 bg-rose-50/50' : 'border-slate-200'}`}>
+                        <div key={entry.id} className={`group relative grid grid-cols-1 gap-4 sm:gap-5 rounded-2xl bg-slate-50 border p-5 sm:p-6 md:grid-cols-12 transition-all duration-300 hover:shadow-md hover:bg-white hover:border-blue-200 ${entry.isInvalid ? 'border-rose-300 bg-rose-50/50' : 'border-slate-200'}`}>
 
                             {/* Absolute Entry Number Badge */}
                             <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-sm font-bold text-slate-400 shadow-sm group-hover:text-[#4a89dc] group-hover:border-blue-200 transition-colors">
                                 {index + 1}
                             </div>
 
-                            <div className="space-y-1.5 md:col-span-2 mt-2 md:mt-0">
+                            {/* Mobile Delete Button (Absolute Top Right) */}
+                            {workEntries.length > 1 && (
+                                <button
+                                    type="button"
+                                    onClick={() => removeWorkEntry(index)}
+                                    className="md:hidden absolute top-3 right-3 p-2 bg-rose-50 border border-rose-100 text-rose-500 rounded-lg shadow-sm active:scale-95"
+                                    title="Delete Entry"
+                                >
+                                    <Trash2 className="h-4 w-4" />
+                                </button>
+                            )}
+
+                            <div className="space-y-1.5 md:col-span-3 lg:col-span-2 mt-2 md:mt-0">
                                 <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Time</label>
                                 <input
                                     type="time"
@@ -99,7 +111,7 @@ const WorkContent = () => {
                                 />
                             </div>
 
-                            <div className="space-y-1.5 md:col-span-5">
+                            <div className="space-y-1.5 md:col-span-9 lg:col-span-5">
                                 <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Work Details <span className="text-rose-500">*</span></label>
                                 <input
                                     type="text"
@@ -110,7 +122,7 @@ const WorkContent = () => {
                                 />
                             </div>
 
-                            <div className="space-y-1.5 md:col-span-4">
+                            <div className="space-y-1.5 md:col-span-11 lg:col-span-4">
                                 <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Location</label>
                                 <input
                                     type="text"
@@ -121,8 +133,9 @@ const WorkContent = () => {
                                 />
                             </div>
 
+                            {/* Desktop Delete Button (Grid Aligned) */}
                             {workEntries.length > 1 && (
-                                <div className="flex items-end justify-end md:col-span-1 pb-1 md:pb-2">
+                                <div className="hidden md:flex items-end justify-end md:col-span-1 pb-1">
                                     <button
                                         type="button"
                                         onClick={() => removeWorkEntry(index)}
@@ -161,26 +174,30 @@ const WorkContent = () => {
                 {/* Next Day Plan */}
                 <div>
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                        {/* UPGRADED SUBTITLE: Left border, semi-bold text, smooth pill shape */}
-                        <div className="inline-block bg-indigo-50 pl-3 pr-4 py-2 rounded-r-lg border-l-4 border-indigo-500">
+                        <div className="inline-block bg-indigo-50 pl-3 pr-4 py-2 rounded-r-lg border-l-4 border-indigo-500 w-max">
                             <h4 className="text-sm font-semibold text-indigo-900 uppercase tracking-wider">Next Day Plan</h4>
                         </div>
                         <button
                             type="button"
                             onClick={addPlanItem}
-                            className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 rounded-lg hover:bg-indigo-100 transition-colors"
+                            className="flex items-center justify-center gap-1.5 px-4 py-2.5 sm:py-2 text-sm font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 rounded-lg hover:bg-indigo-100 transition-colors w-full sm:w-auto"
                         >
                             <Plus className="h-4 w-4" strokeWidth={3} /> Add Task
                         </button>
                     </div>
 
-                    {/* SCROLLABLE CONTAINER FOR NEXT DAY PLANS */}
                     <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2 pb-2 custom-scrollbar">
                         {nextDayPlans.map((plan, index) => (
-                            <div key={plan.id} className="flex flex-col sm:flex-row sm:items-center gap-3 relative group">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center font-bold text-slate-500 shadow-sm group-hover:border-indigo-300 group-hover:text-indigo-600 transition-colors">
-                                    {index + 1}
+                            <div key={plan.id} className="flex flex-col sm:flex-row sm:items-center gap-3 relative group bg-slate-50 sm:bg-transparent p-4 sm:p-0 rounded-xl sm:rounded-none border sm:border-transparent border-slate-200">
+
+                                <div className="flex items-center gap-3 w-full sm:w-auto">
+                                    <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white sm:bg-slate-50 border border-slate-200 flex items-center justify-center font-bold text-slate-500 shadow-sm group-hover:border-indigo-300 group-hover:text-indigo-600 transition-colors">
+                                        {index + 1}
+                                    </div>
+                                    {/* Mobile Label */}
+                                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider sm:hidden">Task Description</span>
                                 </div>
+
                                 <input
                                     type="text"
                                     value={plan.description}
@@ -188,13 +205,14 @@ const WorkContent = () => {
                                     placeholder="Enter planned task..."
                                     className={`${inputClass} !py-2.5 flex-1`}
                                 />
+
                                 {nextDayPlans.length > 1 && (
                                     <button
                                         type="button"
                                         onClick={() => removePlanItem(index)}
-                                        className="flex-shrink-0 p-2 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-all"
+                                        className="absolute sm:relative top-3 sm:top-auto right-3 sm:right-auto p-2 sm:p-2.5 bg-rose-50 sm:bg-transparent text-rose-500 sm:text-slate-400 sm:hover:text-rose-500 sm:hover:bg-rose-50 rounded-lg transition-all shadow-sm sm:shadow-none"
                                     >
-                                        <X className="h-5 w-5" strokeWidth={2.5} />
+                                        <X className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.5} />
                                     </button>
                                 )}
                             </div>

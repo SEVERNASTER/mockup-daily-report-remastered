@@ -13,7 +13,8 @@ import {
     ChevronRight,
     Search,
     Filter,
-    Menu
+    Menu,
+    Download
 } from 'lucide-react';
 
 // Hardcoded mock data to match the screenshot
@@ -105,8 +106,8 @@ const ProjectDetails = ({ project, onBack, onCreateReport }) => {
                             <BarChart2 className="h-4 w-4 hidden sm:block" />
                             History
                         </button>
-                        <button className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2.5 text-xs md:text-sm font-bold text-white bg-[#4a89dc] border border-transparent rounded-xl hover:bg-blue-600 transition-all shadow-sm shadow-blue-500/20 active:scale-95">
-                            <FileText className="h-4 w-4 hidden sm:block" />
+                        <button className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2.5 text-xs md:text-sm font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl hover:bg-emerald-100 hover:border-emerald-300 transition-all shadow-sm active:scale-95">
+                            <Download className="h-4 w-4 hidden sm:block" />
                             Weekly Report
                         </button>
                     </div>
@@ -152,7 +153,7 @@ const ProjectDetails = ({ project, onBack, onCreateReport }) => {
                             </div>
                             <button
                                 onClick={onCreateReport}
-                                className="flex items-center justify-center w-full sm:w-auto gap-2 px-6 py-2.5 text-sm font-bold text-white bg-[#0f172a] rounded-xl hover:bg-slate-800 transition-all shadow-md active:scale-95 whitespace-nowrap"
+                                className="flex items-center justify-center w-full sm:w-auto gap-2 px-6 py-2.5 text-sm font-bold text-white bg-[#4a89dc] rounded-xl hover:bg-blue-600 transition-all shadow-md shadow-blue-500/30 active:scale-95 whitespace-nowrap"
                             >
                                 <Plus className="h-4 w-4 stroke-[3]" />
                                 New Daily Report

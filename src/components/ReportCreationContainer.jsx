@@ -101,9 +101,10 @@ const ReportCreationContainer = ({ project, onCancel }) => {
                 </div>
                 <button
                     onClick={() => setShowCancelModal(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-transparent text-slate-200 text-sm font-semibold rounded-md border border-slate-600 hover:bg-rose-600 hover:text-white hover:border-rose-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-rose-500/50"
+                    aria-label="Cancel"
+                    className="flex items-center justify-center gap-2 w-10 h-10 sm:w-auto sm:h-auto sm:px-4 sm:py-2 bg-rose-500/20 sm:bg-transparent text-rose-400 sm:text-slate-200 text-sm font-semibold rounded-lg border border-rose-500/30 sm:border-slate-600 hover:bg-rose-600 hover:text-white hover:border-rose-600 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-rose-500/50"
                 >
-                    <X className="h-4 w-4" />
+                    <X className="h-5 w-5 sm:h-4 sm:w-4" />
                     <span className="hidden sm:inline">Cancel</span>
                 </button>
             </header>
@@ -201,15 +202,26 @@ const ReportCreationContainer = ({ project, onCancel }) => {
 
                     <div className="flex gap-3">
                         <button
-                            className="px-5 py-2.5 text-sm font-semibold text-[#4a89dc] bg-blue-50 border border-blue-200 rounded-md hover:bg-blue-100 transition-colors hidden sm:block"
+                            className="px-5 py-2.5 text-sm font-semibold text-[#4a89dc] bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors hidden sm:block active:scale-95"
                         >
                             Save Draft
                         </button>
+
                         <button
                             onClick={handleNext}
-                            className="px-6 py-2.5 text-sm font-semibold text-white bg-[#0f172a] border border-transparent rounded-md hover:bg-slate-800 transition-colors shadow-md"
+                            className={`flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-bold text-white border border-transparent rounded-lg transition-all duration-300 shadow-md active:scale-95 ${currentStep === stepsData.length
+                                ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-500/30' // The "Finish Line" color
+                                : 'bg-[#0f172a] hover:bg-slate-800' // The "Navigation" color
+                                }`}
                         >
-                            {currentStep === stepsData.length ? 'Submit Report' : 'Next Step'}
+                            {currentStep === stepsData.length ? (
+                                <>
+                                    <Check className="h-4 w-4 stroke-[3]" />
+                                    Submit Report
+                                </>
+                            ) : (
+                                'Next Step'
+                            )}
                         </button>
                     </div>
                 </div>
