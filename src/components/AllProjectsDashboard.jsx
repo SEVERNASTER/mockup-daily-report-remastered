@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     LayoutGrid,
-    BarChart2,
     FileBarChart,
     Folder,
     LogOut,
@@ -64,7 +63,7 @@ const AllProjectsDashboard = ({ onProjectSelect }) => {
                 </button>
             </div>
 
-            {/* --- Sidebar (Hidden on Mobile) --- */}
+            {/* --- Sidebar (Analytics removed, simplified for single-purpose) --- */}
             <aside className="hidden md:flex w-64 bg-[#0f172a] text-slate-200 flex-col justify-between p-5 shrink-0 border-r border-slate-800 z-20">
                 <div>
                     {/* Logo Area */}
@@ -78,15 +77,11 @@ const AllProjectsDashboard = ({ onProjectSelect }) => {
                         </div>
                     </div>
 
-                    {/* Navigation */}
+                    {/* Navigation - Now focused solely on the main action */}
                     <nav className="space-y-1">
                         <a href="#" className="flex items-center gap-3 bg-white/10 text-white px-3 py-2.5 rounded-lg font-medium text-sm border border-white/5 shadow-sm">
                             <Folder className="h-5 w-5 text-blue-400" />
                             All Projects
-                        </a>
-                        <a href="#" className="flex items-center gap-3 text-slate-400 hover:text-white hover:bg-white/5 px-3 py-2.5 rounded-lg font-medium text-sm transition-colors">
-                            <BarChart2 className="h-5 w-5" />
-                            Analytics
                         </a>
                     </nav>
                 </div>
@@ -104,12 +99,12 @@ const AllProjectsDashboard = ({ onProjectSelect }) => {
             <main className="flex-1 flex flex-col overflow-hidden">
 
                 {/* Header */}
-                <header className="bg-white border-b border-slate-200 px-6 md:px-8 py-5 shrink-0 flex items-center justify-between shadow-sm z-10">
+                {/* <header className="bg-white border-b border-slate-200 px-6 md:px-8 py-5 shrink-0 flex items-center justify-between shadow-sm z-10">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-blue-50 text-[#4a89dc] rounded-lg md:hidden">
                             <Folder className="h-5 w-5" />
                         </div>
-                        <h2 className="text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight">All Projects</h2>
+                        <h2 className="text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight">Project Database</h2>
                     </div>
 
                     <div className="relative hidden sm:block">
@@ -120,7 +115,7 @@ const AllProjectsDashboard = ({ onProjectSelect }) => {
                             className="pl-9 pr-4 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#4a89dc] focus:ring-2 focus:ring-[#4a89dc]/20 w-64 bg-slate-50 hover:bg-white transition-colors"
                         />
                     </div>
-                </header>
+                </header> */}
 
                 {/* Scrollable Content Body */}
                 <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 bg-slate-50/50">
@@ -170,20 +165,17 @@ const AllProjectsDashboard = ({ onProjectSelect }) => {
                                             key={index}
                                             onClick={() => onProjectSelect(row)}
                                             className={`group cursor-pointer transition-all duration-200 border-l-4 
-                                                ${row.highlighted
-                                                    ? "bg-blue-50/50 border-l-[#4a89dc] hover:bg-blue-50"
-                                                    : "bg-white border-l-transparent hover:bg-slate-50 hover:border-l-slate-300"
-                                                }`}
+                                                bg-white border-l-transparent hover:bg-blue-50 hover:border-l-[#4a89dc]`}
                                         >
                                             <td className="px-6 py-4 font-mono font-medium text-slate-900">
                                                 {row.wo}
                                             </td>
-                                            <td className="px-6 py-4 font-semibold text-[#4a89dc] group-hover:text-blue-600 transition-colors">
+                                            <td className="px-6 py-4 font-semibold text-[#4a89dc] group-hover:text-blue-700 transition-colors">
                                                 {row.name}
                                             </td>
                                             <td className="px-6 py-4 text-slate-600">{row.customer}</td>
                                             <td className="px-6 py-4">
-                                                <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">
+                                                <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200 group-hover:bg-white transition-colors">
                                                     {row.type}
                                                 </span>
                                             </td>
@@ -191,7 +183,7 @@ const AllProjectsDashboard = ({ onProjectSelect }) => {
                                             <td className="px-6 py-4 text-slate-500 text-right flex justify-end items-center gap-3">
                                                 <span>{row.date}</span>
                                                 {/* Navigation Arrow on Hover */}
-                                                <ChevronRight className="h-4 w-4 text-slate-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                                                <ChevronRight className="h-4 w-4 text-[#4a89dc] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                                             </td>
                                         </tr>
                                     ))}
@@ -199,7 +191,7 @@ const AllProjectsDashboard = ({ onProjectSelect }) => {
                             </table>
                         </div>
 
-                        {/* Pagination Footer (Matching ProjectDetails) */}
+                        {/* Pagination Footer */}
                         <div className="flex items-center justify-between px-6 py-4 border-t border-slate-100 bg-slate-50/50">
                             <div className="text-sm font-medium text-slate-500">
                                 Showing page <span className="text-slate-900 font-bold">1</span> of <span className="text-slate-900 font-bold">6</span>
